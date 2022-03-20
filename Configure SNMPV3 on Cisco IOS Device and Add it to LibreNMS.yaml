@@ -31,7 +31,7 @@
                password: enc password
                priv: aes
                priv_option: 128
-   - name: Configure SNMPV3 context for FDP table --optional--# for this example we want to populate fdb table on librenms this is optional 
+   - name: Configure SNMPV3 context for FDP table --optional--     # for this example we want to populate fdb table on librenms this is optional 
      cisco.ios.ios_snmp_server:
        config:
          groups:
