@@ -1,0 +1,59 @@
+---
+- name: Configure SNMPV3 on Cisco IOS Device and Add it to LibreNMS
+  hosts: {your inventory}
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: cisco.ios.ios
+    ansible_user: "your username"                       #this part should  
+    ansible_password: "your password"                   #be in env var file
+    ansible_become: yes                                 #but its fine for this example
+    ansible_become_method: enable                       #remove enable if not needed
+    ansible_become_password: "your enable password"     #use ansible vault for enc the passwords!!!!
+
+  tasks:
+   - name: Configure SNMPV3 User and Group for cisco IOS device
+     cisco.ios.ios_snmp_server:
+       config:
+         location: 'your device location'
+         contact: 'your contact'
+         groups:
+         -   group: group name
+             version: v3 #we used snmp v3 for this example you can use v2c
+             version_option: priv
+         users:
+         -   group: group name
+             username: your username
+             version: v3
+             authentication:
+               algorithm: sha
+               password: auth password
+             encryption:
+               password: enc password
+               priv: aes
+               priv_option: 128
+   - name: Configure SNMPV3 context for FDP table --optional--# for this example we want to populate fdb table on librenms this is optional 
+     cisco.ios.ios_snmp_server:
+       config:
+         groups:
+         -   group: group name
+             version: v3
+             version_option: priv
+             context: vlan- match prefix
+   - name: Add the device to LibreNMS
+     uri:
+       url: http://YourLibreNmsURL/api/v0/devices
+       headers:
+         X-Auth-Token: "your generated token"
+       method: POST
+       body_format: json
+       body:
+         hostname: "{{inventory_hostname}}" #this is an ansible variable that contain the current host
+         version: v3
+         authlevel: authPriv
+         authname: your username
+         authalgo: SHA
+         authpass: auth password
+         cryptoalgo: AES
+         cryptopass: enc password
+     register: result
+     failed_when: result.json.message is not search("Already have host") #do not faild if device already exist in librenms
