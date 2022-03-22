@@ -1,0 +1,8 @@
+---
+- include_tasks: snmpv3_location_and_contact.yml
+- include_tasks: snmpv3_group.yml
+- include_tasks: snmpv3_group.yml
+  vars:
+    context: vlan- match prefix
+  when: populate_fdb
+- include_tasks: snmpv3_user.yml

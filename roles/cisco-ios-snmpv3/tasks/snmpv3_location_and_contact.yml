@@ -1,0 +1,6 @@
+---
+- name: Configure SNMPV3 Location and Contact
+  cisco.ios.ios_snmp_server:
+    config:
+      location: '{{ device_location }}'
+      contact: '{{ contact }}'

@@ -1,0 +1,5 @@
+---
+# encrypted secrets with ansible vault
+ansible_user: ssh_username
+ansible_password: ssh_password
+ansible_become_password: enable_password

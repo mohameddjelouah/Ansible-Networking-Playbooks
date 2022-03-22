@@ -1,0 +1,19 @@
+---
+- name: Add the device to LibreNMS
+  uri:
+    url: http://{{ librenms_host  }}/api/v0/devices
+    headers:
+      X-Auth-Token: "{{ auth_token  }}"
+    method: POST
+    body_format: json
+    body:
+      hostname: "{{inventory_hostname}}"
+      version: v3
+      authlevel: authPriv
+      authname: "{{ username }}"
+      authalgo: SHA
+      authpass:  "{{ auth_password }}"
+      cryptoalgo: AES
+      cryptopass:  "{{ enc_password }}"
+  register: result
+  failed_when: (result.json.message is defined and result.json.message is not search("Already have host")) and result.status != 200          #do not faild if device already exist in librenms

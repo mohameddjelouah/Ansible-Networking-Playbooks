@@ -1,0 +1,16 @@
+---
+- name: Configure SNMPV3 User
+  cisco.ios.ios_snmp_server:
+    config:
+      users:
+      -   group: "{{ group_name }}"
+          username: "{{ username }}"
+          version: v3
+          authentication:
+            algorithm: "{{ algorithm }}"
+            password: "{{ auth_password }}"
+          encryption:
+            password: "{{ enc_password }}"
+            priv: aes
+            priv_option: "{{ priv_option }}"
+

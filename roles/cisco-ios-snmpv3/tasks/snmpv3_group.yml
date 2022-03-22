@@ -1,0 +1,11 @@
+---
+- name: Configure SNMPV3 user and group cisco IOS device
+  cisco.ios.ios_snmp_server:
+    config:
+      groups:
+      -   group: "{{ group_name }}"
+          version: v3
+          version_option: priv
+          context: "{{ context  }}"
+
+

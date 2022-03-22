@@ -1,0 +1,2 @@
+---
+librenms_host: librenms_host #example 192.168.1.55 or librenms , this var will override the default var define in the role

@@ -1,0 +1,14 @@
+---
+- name: Cisco ios snmpv3 config and add it to librenms
+  hosts: "your_hosts or group" 
+  vars_files:
+    - vars/cisco_env_var/vars.yml           #cisco ios device non enc variables 
+    - vars/cisco_env_var/vault.yml          #cisco ios device enc variables like ssh username and password
+    - vars/librenms_env_var/vars.yml        #librenms non enc variables
+    - vars/librenms_env_var/vault.yml       #librenms enc variables linke the access token and auth password for snmpv3
+  roles:
+    - role: cisco-ios-snmpv3                #configure snmpv3 on the cisco ios device its a simple config 
+      vars:                                 #you can pass variables to override the default vars
+        populate_fdb: true                  #if you want to populate the fdp table set this to true it will add a context vlan- match prefix 
+    - role: cisco-ios-save-config-handler   #this roll will save config to nvram if changes has been made in the previos roles
+    - role:  librenms-add-device-snmpv3     #this add the cisco ios device to librenms 

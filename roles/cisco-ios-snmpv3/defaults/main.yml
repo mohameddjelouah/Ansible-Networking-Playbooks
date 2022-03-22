@@ -1,0 +1,11 @@
+---
+device_location: default_location
+contact: default_contact
+group_name: default_group
+username: default_user
+auth_password: default_auth_password
+enc_password: default_enc_password
+algorithm: sha
+priv_option: 128 #AES level
+context: "" 
+

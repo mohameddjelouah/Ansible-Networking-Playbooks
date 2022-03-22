@@ -1,0 +1,6 @@
+---
+# encrypted secrets with ansible vault , this variables will override the default variables define in the role
+auth_token: access_token
+username: snmpv3_usename
+auth_password: snmpv3_auth_password
+enc_password: snmpv3_enc_password

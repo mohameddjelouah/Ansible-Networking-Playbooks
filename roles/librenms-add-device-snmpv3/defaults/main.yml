@@ -1,0 +1,6 @@
+---
+librenms_host: default_LibrenmsURL
+auth_token: default_token
+username: default_user
+auth_password: default_auth_passowrd
+enc_password: default_enc_password
