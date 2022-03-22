@@ -1,0 +1,8 @@
+---
+- name: add device to librenms with snmpv3
+  hosts: "your_hosts or group" 
+  vars_files:
+    - vars/librenms_env_var/vars.yml        #librenms non enc variables
+    - vars/librenms_env_var/vault.yml       #librenms enc variables linke the access token and auth password for snmpv3
+  roles:
+    - role:  librenms-add-device-snmpv3     #this role add the device to librenms 
