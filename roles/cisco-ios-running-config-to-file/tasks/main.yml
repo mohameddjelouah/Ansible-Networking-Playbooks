@@ -1,0 +1,7 @@
+---
+- name: backup running config in a file
+  cisco.ios.ios_config:
+    backup: yes
+    backup_options:
+      filename: "{{ file_name }}"
+      dir_path: "{{ file_path }}"
