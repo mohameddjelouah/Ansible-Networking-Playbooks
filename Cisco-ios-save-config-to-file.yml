@@ -1,0 +1,10 @@
+- name: cisco save running config to file
+  hosts: "your_hosts or group" 
+  vars_files:
+    - vars/cisco_env_var/vars.yml                           #cisco ios device non enc variables 
+    - vars/cisco_env_var/vault.yml                          #cisco ios device enc variables like ssh username and password
+  roles:
+    - role: cisco-ios-running-config-to-file                #save running config to a file when there's a change
+      vars:
+        file_name: "{{ ansible_net_hostname }}"             #override the default file name with the device hostname or you can use {{inventory_hostname}} or both
+        file_path: /etc/ansible/cisco_backups/              #override the default path with desired path for ex /home/something/backup
