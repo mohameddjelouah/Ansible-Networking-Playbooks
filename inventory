@@ -1,6 +1,7 @@
 [fortigates]
-5.5.5.5
-6.6.6.6
+fortigate01 ansible_host=10.10.10.10
+fortigate02 ansible_host=10.10.10.20
+fortigate03 ansible_host=10.10.10.30
 
 [CiscoSwitches]
 1.1.1.1
