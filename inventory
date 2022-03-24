@@ -3,6 +3,10 @@ fortigate01 ansible_host=10.10.10.10
 fortigate02 ansible_host=10.10.10.20
 fortigate03 ansible_host=10.10.10.30
 
+[fortigates:vars]
+ansible_network_os=fortinet.fortios.fortios
+
+
 [CiscoSwitches]
 1.1.1.1
 2.2.2.2
