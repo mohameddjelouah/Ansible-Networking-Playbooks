@@ -1,0 +1,9 @@
+---
+#this vault is constructed from the inventory and it contain 2 parts 
+#the first is the fortigate hostname and 
+#the second is an added string _token so each fortigate on the inventory will match his token 
+
+# encrypted secrets with ansible vault
+fortigate01_token: "1BVz1787GxSSndtqnbrRw6NBbtKlUy"
+fortigate02_token: "2BVz1787GxSSndtqnbrRw6NBbtKlUy"
+fortigate03_token: "3BVz1787GxSSndtqnbrRw6NBbtKlUy"
