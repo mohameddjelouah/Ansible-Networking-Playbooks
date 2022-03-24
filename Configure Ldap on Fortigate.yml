@@ -19,6 +19,6 @@
         dn: "dc=something2,dc=something2"
         cnid: "sAMAccountName"
         type: "regular"
-        ad_user: "some_username"
+        ad_user: "some_username"       #example domain//username
         ad_password: "some_password"
 
