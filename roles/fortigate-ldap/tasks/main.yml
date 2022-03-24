@@ -1,0 +1,17 @@
+---
+# this is simple configuration you can add other attributes like port .....etc
+- name: Configure ldap server.
+  fortios_user_ldap:
+     vdom:  "{{ vdom }}"
+     state: "present"
+     access_token: "{{ lookup('vars',inventory_hostname + '_token') }}" 
+     user_ldap:
+       name: "{{ name }}"
+       server: "{{ first_server }}"
+       secondary_server: "{{ second_server }}"
+       tertiary_server: "{{ third_server }}"
+       dn: "{{ dn  }}"
+       cnid: "{{ cnid  }}"
+       type: "{{ type  }}"
+       username: "{{ ad_user  }}"
+       password: "{{ ad_password }}"

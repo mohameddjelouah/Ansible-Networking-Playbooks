@@ -1,0 +1,12 @@
+---
+# you can override all this variables in the play or group vars or role vars
+vdom: root #this is the default case if you have no vdoms setup in fortigate 
+name: default_name
+first_server: default_server
+second_server:
+third_server:
+dn: "dc=default_dc1,dc=default_dc2"
+cnid: "sAMAccountName"
+type: "regular"
+ad_user: default_username
+ad_password: default_password
