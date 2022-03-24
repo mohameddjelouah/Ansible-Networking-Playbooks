@@ -1,0 +1,24 @@
+---
+- name: Configure Ldap on Fortigate
+  hosts: inventory name or group name
+  connection: httpapi
+  collections:
+  - fortinet.fortios
+  vars_files:
+    - vars/fortigate_env_var/vars.yml
+    - vars/fortigate_env_var/vault.yml #this vault is constructed from the inventory and it contain 2 parts 
+                                       #the first is the fortigate hostname and 
+                                       #the second is an added string _token so each fortigate on the inventory will match his token 
+  roles:
+    - role: fortigate-ldap
+      vars:
+        vdom: root                     #this is the default case if you have no vdoms setup in fortigate
+        name: "AD"                     #the that going to display on the GUI
+        first_server: ad1_ip           #ldap server ip or hostname
+        second_server: ad2_ip          #ldap secondary server if applicable if you want to add a this server add third_server variable
+        dn: "dc=something2,dc=something2"
+        cnid: "sAMAccountName"
+        type: "regular"
+        ad_user: "some_username"
+        ad_password: "some_password"
+
