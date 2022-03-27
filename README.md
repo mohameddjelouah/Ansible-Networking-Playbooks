@@ -12,3 +12,5 @@
   </br>
   <b>3 - Configure Ldap on Fortigate.</b>
   </br>
+<b>3 - Fortigate Backup Configuration To a File.</b>
+  </br>
