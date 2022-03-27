@@ -1,0 +1,15 @@
+---
+- name: backup the config 
+  collections:  # this role didn't work without specifying the collection i think it's a collection inheritance issues
+  - fortinet.fortios
+  fortios_monitor_fact:
+     vdom:  "{{ vdom }}"
+     access_token: "{{ lookup('vars',inventory_hostname + '_token') }}"
+     selector: 'system_config_backup'
+     params:
+         scope: 'global' #global = backup all vdoms , scope: 'vdom' vdom_name: 'name of vdom you wanna backup'
+  register: backup
+- name: Save the backup config.
+  copy:
+    content: '{{ backup.meta.raw }}'
+    dest: '{{ save_backup_path }}/{{inventory_hostname}}.cfg'  # example /etc/ansible/fortigate_backups
